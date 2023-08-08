@@ -29,7 +29,6 @@ function CurrentWeather() {
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginTop: StatusBar.currentHeight,
     flex: 1,
     backgroundColor: 'pink',
   },

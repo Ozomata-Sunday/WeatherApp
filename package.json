@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.5.8",
     "@react-navigation/native": "^6.1.7",
     "axios": "^1.4.0",
     "expo": "~49.0.5",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@types/react": "^18.2.19",
     "eslint": "^8.46.0"
   },
   "private": true
