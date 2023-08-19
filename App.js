@@ -1,23 +1,53 @@
-import React from 'react';
-import CurrentWeather from './src/Screens/CurrentWeather'
-import UpcomingWeather from './src/Screens/UpComingWeather'
-import City from './src/Screens/City'
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, { useState, useEffect } from "react";
+import { View, ActivityIndicator, StyleSheet } from "react-native";
+import { NavigationContainer } from '@react-navigation/native'
+import Tabs from "./src/components/Tabs";
+import * as Location from 'expo-location'
 
-
-const Tab = createBottomTabNavigator();
 
 const App = () => {
+  const [loading, setLoading] = useState(false)
+  const [location, setLocation] = useState(null)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  if(location){
+    console.log(location)
+  }
+
+  if(loading) {
+    return(
+      <View style = {style.container}>
+        <ActivityIndicator size={'large'} color ={'blue'}/>
+      </View>
+    )
+  }
+
+
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name= {'Current'} component = {CurrentWeather}/>
-        <Tab.Screen name= {'Upcoming'} component = {UpcomingWeather}/>
-        <Tab.Screen name= {'City'} component = {City}/>
-      </Tab.Navigator>
+        <Tabs />
     </NavigationContainer>
   )
 }
 
+const style = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    flex: 1
+  }
+})
 export default App;
