@@ -11,12 +11,14 @@ export const useGetWeather = () => {
 
     const fetchWeatherData = async () => {
         try {
-            const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${WEATHER_API_KEY}`)
+            const response = await fetch(
+                `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${WEATHER_API_KEY}&units=metric`
+            )
             const data = await response.json()
             setWeather(data)
 
         } catch (e) {
-            setError("Could not fetch wweather")
+            setError("Could not fetch weather")
         } finally {
             setLoading(false)
         }
