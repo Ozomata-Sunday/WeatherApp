@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { View, ActivityIndicator, StyleSheet } from "react-native";
 import { NavigationContainer } from '@react-navigation/native'
 import Tabs from "./src/components/Tabs";
@@ -24,6 +24,9 @@ const App = () => {
       ) :
         (<ActivityIndicator size={'large'} color={'blue'} />)}
     </View>
+
+    //Thanks to freecodecamp.com
+    //splash imaage from flaticon.com/cloudy
   )
 }
 
